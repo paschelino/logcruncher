@@ -1,10 +1,15 @@
 package info.cosmicsand.logcruncher
 
-public class LogVisitorMock implements LogVisitor {
-    private final LogfileStatistics statistics;
+public class LogVisitorMock<LOGENTRY_TYPE> implements LogVisitor<LOGENTRY_TYPE> {
+    private final LogfileStatisticsMock statistics;
 
-    public LogVisitorMock(LogfileStatistics logfileStatistics) {
+    public LogVisitorMock(LogfileStatisticsMock logfileStatistics) {
         this.statistics = logfileStatistics
+    }
+
+    @Override
+    void visit(LOGENTRY_TYPE logentry) {
+        statistics.addLogentry(logentry)
     }
 
     @Override
