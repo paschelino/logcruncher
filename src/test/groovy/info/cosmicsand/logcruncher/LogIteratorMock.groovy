@@ -8,7 +8,6 @@ class LogIteratorMock<LOGENTRY_TYPE> implements LogIterator<LOGENTRY_TYPE> {
 
     def appendEntries(List<LOGENTRY_TYPE> entries) {
         this.entries += entries
-        println this.entries
     }
 
 
