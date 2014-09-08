@@ -1,9 +1,9 @@
 package info.cosmicsand.logcruncher
 
-import java.math.BigInteger
+import info.cosmicsand.logcruncher.contracts.LogfileStatistics
 
 public class LogfileStatisticsMock<LOGENTRY_TYPE> implements LogfileStatistics<LOGENTRY_TYPE> {
-    private long requestCount;
+    long requestCount;
 
     public LogfileStatisticsMock() {
         this.requestCount = 0L

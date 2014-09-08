@@ -1,5 +1,8 @@
 package info.cosmicsand.logcruncher
 
+import info.cosmicsand.logcruncher.contracts.LogVisitor
+import info.cosmicsand.logcruncher.contracts.LogfileStatistics
+
 public class LogVisitorMock<LOGENTRY_TYPE> implements LogVisitor<LOGENTRY_TYPE> {
     private final LogfileStatisticsMock statistics;
 
