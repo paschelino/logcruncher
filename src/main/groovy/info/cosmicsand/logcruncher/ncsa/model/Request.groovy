@@ -7,7 +7,7 @@ import groovy.transform.EqualsAndHashCode
 class Request {
     static final String RAW_REQUEST_VALUE = '"-"'
     static final def EMPTY_REQUEST = new Request(rawRequestValue: RAW_REQUEST_VALUE)
-    static final String CAPTURE_EXPRESSION = /^([A-Z]+) ([^:]+):\/\/[^\/]*(\/[^ \?]*) .*/
+    static final String CAPTURE_EXPRESSION = /([^ ]*) ([^:]*):\/{0,2}[^\/]*((?:\/[^\/\?]*)*) .*/
 
     @Lazy
     def matcher = {
@@ -27,6 +27,17 @@ class Request {
     @Lazy
     Path path = {
         matcher.matches() ? new Path(matcher[0][3]) : Path.ROOT
+    }()
+
+    @Lazy
+    UriQuery query = {
+        def splitted = rawRequestValue.split(/\?/)
+        def result = UriQuery.EMPTY_QUERY
+        if(splitted.length > 1){
+            result = new UriQuery(splitted[1].split(/ /)[0])
+        }
+//        matcher.matches() ? new UriQuery(matcher[0][4]) : UriQuery.EMPTY_QUERY
+        result
     }()
 
     String rawRequestValue
