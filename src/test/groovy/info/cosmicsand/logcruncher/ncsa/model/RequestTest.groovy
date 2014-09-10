@@ -1,5 +1,6 @@
 package info.cosmicsand.logcruncher.ncsa.model
 
+import de.cosmicsand.webtools.path.Path
 import org.junit.Test
 
 import static org.hamcrest.CoreMatchers.is
@@ -50,5 +51,17 @@ public class RequestTest {
     public void GIVEN_theRequestJustContainsAPath_THEN_theProtocolDefaultsTo_http() throws Exception {
         def pathRequest = "POST /just/a/path HTTP/1.1"
         assertThat(new Request(rawRequestValue: pathRequest).protocol, is(HttpProtocol.http))
+    }
+
+    @Test
+    public void GIVEN_theRequestHasNoPath_THEN_itDefaultsToRoot() throws Exception {
+        def httpRequest = "POST http://www.example.org HTTP/1.1"
+        assertThat(new Request(rawRequestValue: httpRequest).path, is(Path.ROOT))
+    }
+
+    @Test
+    public void GIVEN_theRequestHasAPath_THEN_itKnows() throws Exception {
+        def httpRequest = "POST http://www.example.org/some/path HTTP/1.1"
+        assertThat(new Request(rawRequestValue: httpRequest).path, is(new Path("/some/path")))
     }
 }
