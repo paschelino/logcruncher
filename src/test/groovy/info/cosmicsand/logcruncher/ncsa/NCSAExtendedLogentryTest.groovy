@@ -39,4 +39,12 @@ class NCSAExtendedLogentryTest {
     public void GIVEN_aDumbLogentry_THEN_toStringReturnsTheRawValue() throws Exception {
         assertThat(new NCSAExtendedLogentry().toString(), is(RAW_DUMB_ENTRY))
     }
+
+    @Test
+    public void GIVEN_aLogEntryWithARequest_THEN_knowThatRequest() throws Exception {
+        def dateTime = "13/Feb/1976:09:10:11 +0200"
+        def rawRequest = "GET http://www.example.org/?key=value HTTP/1.1"
+        def rawEntry = "- - - [$dateTime] \"$rawRequest\" - - \"-\" \"-\""
+        assertThat(new NCSAExtendedLogentry(rawEntry).request, is(new Request(rawRequest)))
+    }
 }

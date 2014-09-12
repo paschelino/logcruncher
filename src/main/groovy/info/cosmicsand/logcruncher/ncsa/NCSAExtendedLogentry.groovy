@@ -17,11 +17,25 @@ public class NCSAExtendedLogentry implements Logentry {
     static final String RAW_DUMB_ENTRY = "- - - [-] \"-\" - - \"-\" \"-\""
     static final NCSAExtendedLogentry DUMB_ENTRY = new NCSAExtendedLogentry(RAW_DUMB_ENTRY)
 
+    static final String CAPTURE_EXPRESSION = /.* \"(.+)\" .*/
+
+    @Lazy
+    def matcher = {
+        rawLogEntry =~ CAPTURE_EXPRESSION
+    }()
+
     Host remoteHost = Host.LOOPBACK_ADDRESS
     UserIdentifierAccordingRFC931 userIdentifierAccordingRFC931 = UserIdentifierAccordingRFC931.EMPTY_USER_ID
     User user = User.EMPTY_USER
     RequestDate date = RequestDate.EMPTY_DATE
-    Request request = Request.EMPTY_REQUEST
+
+    @Lazy
+    Request request = {
+        def startIndex = rawLogEntry.indexOf('"')
+        def rawRequest = rawLogEntry.substring(startIndex + 1)
+        new Request(rawRequest.substring(0, rawRequest.indexOf('"')))
+    }()
+
     HttpStatus httpStatus = HttpStatus.EMPTY_STATUS
     RequestBytesCount bytesCount = RequestBytesCount.EMPTY_BYTES_COUNT
     Referer referer = Referer.EMPTY_REFERER
@@ -33,7 +47,7 @@ public class NCSAExtendedLogentry implements Logentry {
         this.rawLogEntry = rawLogEntry
     }
 
-    NCSAExtendedLogentry(){
+    NCSAExtendedLogentry() {
         this(RAW_DUMB_ENTRY)
     }
 

@@ -6,12 +6,13 @@ import org.junit.Test
 
 import static org.hamcrest.CoreMatchers.is
 import static org.junit.Assert.assertThat
+import static org.junit.Assert.assertThat
 
 public class RequestTest {
 
     @Test
     public void GIVEN_theInputIsTheDefaultForAnEmptyValue_THEN_itEqualsToTheEmptyRequest() throws Exception {
-        assertThat(new Request(rawRequestValue: '"-"'), is(Request.EMPTY_REQUEST))
+        assertThat(new Request(rawRequestValue: '-'), is(Request.EMPTY_REQUEST))
     }
 
     @Test
@@ -90,4 +91,9 @@ public class RequestTest {
         assertThat(new Request(rawRequestValue: httpRequest).query, is(new UriQuery("key=value")))
     }
 
+    @Test
+    public void toStringDeliversTheRawValue() throws Exception {
+        def httpRequest = "POST http://www.example.org/?key=value HTTP/1.1"
+        assertThat(new Request(rawRequestValue: httpRequest).toString(), is(httpRequest))
+    }
 }

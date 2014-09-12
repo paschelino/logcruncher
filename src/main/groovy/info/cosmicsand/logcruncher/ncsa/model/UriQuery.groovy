@@ -9,7 +9,6 @@ class UriQuery {
     def query = ''
 
     UriQuery(String query) {
-        println(query)
         this.query = query
     }
 
