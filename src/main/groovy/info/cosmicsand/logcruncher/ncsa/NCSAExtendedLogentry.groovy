@@ -17,7 +17,7 @@ public class NCSAExtendedLogentry implements Logentry {
     static final String RAW_DUMB_ENTRY = "- - - [-] \"-\" - - \"-\" \"-\""
     static final NCSAExtendedLogentry DUMB_ENTRY = new NCSAExtendedLogentry(RAW_DUMB_ENTRY)
 
-    static final String CAPTURE_EXPRESSION = /.* \"(.+)\" .*/
+    static final String CAPTURE_EXPRESSION = /([^ ]+) ([^ ]+) ([^ ]+) \[(.+)\] "(.+)" ([^ ]+) ([^ ]+) "(.+)" "(.+)"/
 
     @Lazy
     def matcher = {
@@ -31,9 +31,7 @@ public class NCSAExtendedLogentry implements Logentry {
 
     @Lazy
     Request request = {
-        def startIndex = rawLogEntry.indexOf('"')
-        def rawRequest = rawLogEntry.substring(startIndex + 1)
-        new Request(rawRequest.substring(0, rawRequest.indexOf('"')))
+        new Request(matcher[0][5])
     }()
 
     HttpStatus httpStatus = HttpStatus.EMPTY_STATUS
