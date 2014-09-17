@@ -1,10 +1,12 @@
 package info.cosmicsand.logcruncher.ncsa.model
 
 import de.cosmicsand.webtools.path.Path
+import org.hamcrest.Matchers
 import org.junit.Ignore
 import org.junit.Test
 
 import static org.hamcrest.CoreMatchers.is
+import static org.hamcrest.Matchers.not
 import static org.junit.Assert.assertThat
 import static org.junit.Assert.assertThat
 
@@ -95,5 +97,21 @@ public class RequestTest {
     public void toStringDeliversTheRawValue() throws Exception {
         def httpRequest = "POST http://www.example.org/?key=value HTTP/1.1"
         assertThat(new Request(rawRequestValue: httpRequest).toString(), is(httpRequest))
+    }
+
+    @Test
+    public void anEmptyRequestsTypeIsADash() throws Exception {
+        assertThat(new Request().type, is(RequestType.NONE))
+    }
+
+    @Test
+    public void GIVEN_aValidRequest_thenKnowItsType() throws Exception {
+        def httpRequest = "POST http://www.example.org/my/path?key=value HTTP/1.1"
+        assertThat(new Request(httpRequest).type, is(new RequestType(HttpMethod.POST, HttpProtocol.http, new Path("/my/path"))))
+    }
+
+    @Test
+    public void requestsOf_NONE_mayNotEqualRealRequests() throws Exception {
+        assertThat(new RequestType(HttpMethod.POST, HttpProtocol.http, new Path("/my/path")), is(not(RequestType.NONE)))
     }
 }
