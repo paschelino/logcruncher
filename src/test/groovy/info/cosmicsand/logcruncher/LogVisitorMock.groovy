@@ -1,12 +1,12 @@
 package info.cosmicsand.logcruncher
 
 import info.cosmicsand.logcruncher.contracts.LogVisitor
-import info.cosmicsand.logcruncher.contracts.LogfileStatistics
+import info.cosmicsand.logcruncher.contracts.LogStatistics
 
 public class LogVisitorMock<LOGENTRY_TYPE> implements LogVisitor<LOGENTRY_TYPE> {
-    private final LogfileStatisticsMock statistics;
+    private final LogStatisticsMock statistics;
 
-    public LogVisitorMock(LogfileStatisticsMock logfileStatistics) {
+    public LogVisitorMock(LogStatisticsMock logfileStatistics) {
         this.statistics = logfileStatistics
     }
 
@@ -15,8 +15,7 @@ public class LogVisitorMock<LOGENTRY_TYPE> implements LogVisitor<LOGENTRY_TYPE> 
         statistics.addLogentry(logentry)
     }
 
-    @Override
-    public LogfileStatistics getStatistics() {
+    public LogStatistics getStatistics() {
         return statistics
     }
 }

@@ -1,11 +1,11 @@
 package info.cosmicsand.logcruncher
 
-import info.cosmicsand.logcruncher.contracts.LogfileStatistics
+import info.cosmicsand.logcruncher.contracts.LogStatistics
 
-public class LogfileStatisticsMock<LOGENTRY_TYPE> implements LogfileStatistics<LOGENTRY_TYPE> {
+public class LogStatisticsMock<LOGENTRY_TYPE> implements LogStatistics<LOGENTRY_TYPE> {
     long requestCount;
 
-    public LogfileStatisticsMock() {
+    public LogStatisticsMock() {
         this.requestCount = 0L
     }
 
@@ -14,7 +14,7 @@ public class LogfileStatisticsMock<LOGENTRY_TYPE> implements LogfileStatistics<L
     }
 
     @Override
-    public Long analyzedLogentriesCount() {
+    public Long getVisitedLogentriesCount() {
         return Long.valueOf(this.requestCount)
     }
 }
