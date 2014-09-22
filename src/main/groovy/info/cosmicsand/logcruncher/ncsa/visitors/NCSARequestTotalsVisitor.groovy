@@ -35,6 +35,22 @@ class NCSARequestTotalsVisitor implements LogVisitor<NCSAExtendedLogentry>, NCSA
     }
 
     @Override
+    String[] getColumnNames() {
+        [RequestType.class.getName(), Long.class.getName()]
+    }
+
+    @Override
+    List<String[]> getValueLines() {
+        def lines = []
+        String[] currentLine
+        requestCounts.each { requestType, count ->
+            currentLine = [requestType.toString(), count.toString()]
+            lines << currentLine
+        }
+        lines
+    }
+
+    @Override
     Long getRequestCount(RequestType requestType) {
         return requestCounts[requestType] ?: 0L
     }

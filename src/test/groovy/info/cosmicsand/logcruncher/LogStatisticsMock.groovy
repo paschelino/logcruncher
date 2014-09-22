@@ -17,4 +17,14 @@ public class LogStatisticsMock<LOGENTRY_TYPE> implements LogStatistics<LOGENTRY_
     public Long getVisitedLogentriesCount() {
         return Long.valueOf(this.requestCount)
     }
+
+    @Override
+    String[] getColumnNames() {
+        return new String[0]
+    }
+
+    @Override
+    List<String[]> getValueLines() {
+        return null
+    }
 }
