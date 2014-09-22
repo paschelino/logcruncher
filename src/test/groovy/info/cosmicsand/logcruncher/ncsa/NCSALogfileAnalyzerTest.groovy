@@ -6,6 +6,7 @@ import info.cosmicsand.logcruncher.LogStatisticsMock
 import info.cosmicsand.logcruncher.contracts.LogVisitor
 import info.cosmicsand.logcruncher.contracts.LogfileAnalyzer
 import info.cosmicsand.logcruncher.contracts.LogStatistics
+import info.cosmicsand.logcruncher.ncsa.visitors.NCSARequestTotalsVisitor
 import org.junit.Before
 import org.junit.Test
 
@@ -13,7 +14,7 @@ import static org.hamcrest.CoreMatchers.is
 import static org.junit.Assert.assertThat
 
 public class NCSALogfileAnalyzerTest {
-    LogfileAnalyzer<NCSAExtendedLogentry> logfileAnalyzer
+    LogfileAnalyzer<NCSARequestTotalsVisitor> logfileAnalyzer
     def lowLevelReader
     LogStatistics logfileStatistics
     LogVisitor logVisitor

@@ -1,0 +1,6 @@
+127.0.0.1 - - [19/Sep/2014:00:30:02 +0200] "GET http://localhost/index.html HTTP/1.1" 200 304 "-" "Apache-HttpClient/4.2.6 (java 1.5)"
+127.0.0.1 - - [19/Sep/2014:00:30:02 +0200] "GET http://localhost/index.html HTTP/1.1" 200 304 "-" "Apache-HttpClient/4.2.6 (java 1.5)"
+127.0.0.1 - - [19/Sep/2014:00:30:02 +0200] "GET http://localhost/ HTTP/1.1" 200 11 "-" "Apache-HttpClient/4.2.6 (java 1.5)"
+127.0.0.1 - - [19/Sep/2014:00:30:02 +0200] "GET http://localhost/index.html HTTP/1.1" 200 304 "-" "Apache-HttpClient/4.2.6 (java 1.5)"
+127.0.0.1 - - [19/Sep/2014:00:30:02 +0200] "GET http://localhost/sample_pic_3_x_3.jpg HTTP/1.1" 200 387 "-" "Apache-HttpClient/4.2.6 (java 1.5)"
+127.0.0.1 - - [19/Sep/2014:00:30:02 +0200] "GET http://localhost/ HTTP/1.1" 200 11 "-" "Apache-HttpClient/4.2.6 (java 1.5)"

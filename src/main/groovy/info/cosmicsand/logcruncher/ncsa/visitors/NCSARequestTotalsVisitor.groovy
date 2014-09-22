@@ -7,7 +7,7 @@ import info.cosmicsand.logcruncher.ncsa.model.RequestType
 
 class NCSARequestTotalsVisitor implements LogVisitor<NCSAExtendedLogentry>, NCSALogStatistics {
     private long vistiedLogentriesCount
-    private final Map<RequestType, Long> requestCounts
+    final Map<RequestType, Long> requestCounts
 
     NCSARequestTotalsVisitor() {
         requestCounts = [:]

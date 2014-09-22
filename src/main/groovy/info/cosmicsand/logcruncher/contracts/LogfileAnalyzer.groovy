@@ -1,6 +1,6 @@
 package info.cosmicsand.logcruncher.contracts
 
-public interface LogfileAnalyzer<LOGENTRY_TYPE extends Logentry> {
+public interface LogfileAnalyzer<LOG_VISITOR extends LogVisitor> {
 
-    LogStatistics analyze(LogVisitor logVisitor)
+     LogStatistics analyze(LOG_VISITOR logVisitor)
 }

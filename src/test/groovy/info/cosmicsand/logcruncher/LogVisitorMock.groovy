@@ -2,8 +2,10 @@ package info.cosmicsand.logcruncher
 
 import info.cosmicsand.logcruncher.contracts.LogVisitor
 import info.cosmicsand.logcruncher.contracts.LogStatistics
+import info.cosmicsand.logcruncher.ncsa.NCSAExtendedLogentry
+import info.cosmicsand.logcruncher.ncsa.visitors.NCSARequestTotalsVisitor
 
-public class LogVisitorMock<LOGENTRY_TYPE> implements LogVisitor<LOGENTRY_TYPE> {
+public class LogVisitorMock extends NCSARequestTotalsVisitor {
     private final LogStatisticsMock statistics;
 
     public LogVisitorMock(LogStatisticsMock logfileStatistics) {
@@ -11,7 +13,7 @@ public class LogVisitorMock<LOGENTRY_TYPE> implements LogVisitor<LOGENTRY_TYPE> 
     }
 
     @Override
-    void visit(LOGENTRY_TYPE logentry) {
+    void visit(NCSAExtendedLogentry logentry) {
         statistics.addLogentry(logentry)
     }
 
