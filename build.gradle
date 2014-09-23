@@ -1,6 +1,8 @@
 apply plugin: "groovy"
+apply plugin:'application'
 
 version = '0.0.1'
+mainClassName = "info.cosmicsand.logcruncher.Main"
 
 repositories {
     mavenCentral()
