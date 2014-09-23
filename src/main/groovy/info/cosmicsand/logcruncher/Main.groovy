@@ -11,11 +11,11 @@ public class Main {
     public static void main(String[] args) {
         def input = args[0]
         def output = args[1]
-//        def visitorClassNames = new VisitorClassNameExtractor(args[2])
+        def visitorClassNames = new VisitorClassNameExtractor(args[2]).classNames
         def visitors = []
-//        visitorClassNames.each {
-            visitors.add(new NCSARequestTotalsVisitor())
-//        }
+        visitorClassNames.each {
+            visitors.add(Class.forName(it).newInstance())
+        }
 
         // TODO: use info.cosmicsand.logcruncher.contracts.LogIterator interface instead
         new File(input).eachLine { inputLine ->

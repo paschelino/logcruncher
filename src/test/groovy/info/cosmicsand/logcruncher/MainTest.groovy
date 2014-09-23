@@ -29,7 +29,7 @@ class MainTest {
         String[] args = new String[3]
         args[0] = sampleVarnishLog
         args[1] = sampleOutput
-        args[2] = "[${NCSARequestTotalsVisitor.toString()}]"
+        args[2] = "[${NCSARequestTotalsVisitor.getName()}]"
         Main.main(args)
         assertThat(new File(sampleOutput).exists(), is(true))
     }
