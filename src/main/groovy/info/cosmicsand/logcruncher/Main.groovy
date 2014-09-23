@@ -17,6 +17,7 @@ public class Main {
             visitors.add(new NCSARequestTotalsVisitor())
 //        }
 
+        // TODO: use info.cosmicsand.logcruncher.contracts.LogIterator interface instead
         new File(input).eachLine { inputLine ->
             def logentry = new NCSAExtendedLogentry(inputLine)
             visitors.each { visitor ->
